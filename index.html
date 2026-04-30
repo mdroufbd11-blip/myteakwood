@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teakwood | Premium Furniture</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* === CSS VARIABLES & RESET === */
+        :root {
+            --teak-dark: #3a2e28;
+            --teak-medium: #8b5e34;
+            --teak-light: #d4b595;
+            --beige-light: #faf7f2;
+            --beige-dark: #e8e1d5;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --text-muted: #666666;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--beige-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: var(--teak-dark);
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* === HEADER & NAVIGATION === */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--teak-dark);
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--teak-medium);
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            font-size: 1.2rem;
+            color: var(--teak-dark);
+            cursor: pointer;
+        }
+
+        .cart-icon {
+            position: relative;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background-color: var(--teak-medium);
+            color: var(--white);
+            font-size: 0.7rem;
+            font-weight: bold;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* === PAGE ROUTING LOGIC (SPA) === */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-style: italic;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* === BUTTONS === */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--teak-medium);
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: var(--teak-dark);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--teak-medium);
+            color: var(--teak-medium);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--teak-medium);
+            color: var(--white);
+        }
+
+        /* === HOME PAGE === */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(58, 46, 40, 0.4), rgba(58, 46, 40, 0.4)), url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        .categories {
+            max-width: 1200px;
+            margin: 5rem auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .category-card {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .category-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .category-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .category-overlay h3 {
+            color: var(--white);
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+        }
+
+        /* Product Grids (Used for New Arrivals, Wardrobes, and Shop) */
+        .product-section {
+            max-width: 1200px;
+            margin: 5rem auto;
+            padding: 0 2rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            padding: 1rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .product-img-wrap {
+            overflow: hidden;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        /* Uniform High-Quality Images */
+        .product-img-wrap img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img-wrap img {
+            transform: scale(1.05);
+        }
+
+        .product-info h4 {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-size: 1rem;
+        }
+
+        .product-category {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.2rem;
+        }
+
+        .product-price {
+            color: var(--teak-medium);
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--beige-dark);
+            padding: 5rem 2rem;
+            text-align: center;
+            margin-top: 5rem;
+        }
+
+        .testimonial-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+        }
+
+        .testimonial-card h5 {
+            color: var(--teak-medium);
+        }
+
+        /* === SHOP PAGE === */
+        .shop-container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 3rem;
+        }
+
+        .shop-sidebar h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            border-bottom: 1px solid var(--beige-dark);
+            padding-bottom: 0.5rem;
+        }
+
+        .shop-sidebar ul li {
+            margin-bottom: 1rem;
+        }
+
+        .shop-sidebar ul li a {
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .shop-sidebar ul li a:hover {
+            color: var(--teak-medium);
+            padding-left: 5px;
+        }
+
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        /* === ABOUT, BLOG, CONTACT PAGES === */
+        .page-header {
+            background: var(--teak-dark);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            color: var(--white);
+            font-size: 3rem;
+        }
+
+        .content-container {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Blog Layout */
+        .blog-grid {
+            max-width: 1200px;
+            margin: 4rem auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            padding: 0 2rem;
+        }
+
+        .blog-post img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-post h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-post p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Form */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-info i {
+            color: var(--teak-medium);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            background: var(--white);
+            font-family: 'Lato', sans-serif;
+            outline: none;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: var(--teak-medium);
+        }
+
+        /* === FOOTER === */
+        footer {
+            background-color: var(--teak-dark);
+            color: var(--beige-light);
+            padding: 4rem 2rem 2rem;
+            margin-top: 5rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h3 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-col h2.logo {
+            color: var(--white);
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a {
+            color: #aaa;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* === RESPONSIVE DESIGN === */
+        @media (max-width: 992px) {
+            .categories, .product-grid, .shop-grid { grid-template-columns: repeat(2, 1fr); }
+            .shop-container, .contact-wrapper { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            nav ul { display: none; }
+            .hero-content h1 { font-size: 3rem; }
+            .categories, .product-grid, .shop-grid, .testimonial-grid, .blog-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#home" class="logo nav-link-logo">Teakwood.</a>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#shop" class="nav-link">Shop</a></li>
+                    <li><a href="#blog" class="nav-link">Blog</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <i class="fas fa-search"></i>
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-badge" id="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ================= HOME PAGE ================= -->
+        <div id="page-home" class="page active">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>Crafted for Eternity</h1>
+                    <p>Minimalist wooden furniture to elevate your living space.</p>
+                    <a href="#shop" class="btn cta-shop">Shop Now</a>
+                </div>
+            </section>
+
+            <!-- Featured Categories -->
+            <section class="categories">
+                <div class="category-card cta-shop">
+                    <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80" alt="Living Room">
+                    <div class="category-overlay"><h3>Living Room</h3></div>
+                </div>
+                <div class="category-card cta-shop">
+                    <img src="https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&w=800&q=80" alt="Bedroom">
+                    <div class="category-overlay"><h3>Bedroom</h3></div>
+                </div>
+                <div class="category-card cta-shop">
+                    <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80" alt="Kitchen">
+                    <div class="category-overlay"><h3>Kitchen</h3></div>
+                </div>
+            </section>
+
+            <!-- Expanded New Arrivals Grid -->
+            <section class="product-section">
+                <div class="section-header">
+                    <h2>New Arrivals</h2>
+                    <p>Discover our latest handcrafted pieces</p>
+                </div>
+                <!-- Row 1 -->
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800&q=80" alt="Lounge Chair">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Chairs</p>
+                            <h4>Oak Lounge Chair</h4>
+                            <p class="product-price">$349.00</p>
+                            <button class="btn add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=800&q=80" alt="Floor Lamp">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Lamps</p>
+                            <h4>Brass Floor Lamp</h4>
+                            <p class="product-price">$189.00</p>
+                            <button class="btn add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?auto=format&fit=crop&w=800&q=80" alt="Cabinet">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Cabinets</p>
+                            <h4>Teak Storage Cabinet</h4>
+                            <p class="product-price">$599.00</p>
+                            <button class="btn add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1532372320572-cda25653a26d?auto=format&fit=crop&w=800&q=80" alt="Coffee Table">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Tables</p>
+                            <h4>Round Coffee Table</h4>
+                            <p class="product-price">$249.00</p>
+                            <button class="btn add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Row 2 -->
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=800&q=80" alt="Armchair">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Chairs</p>
+                            <h4>Boucle Armchair</h4>
+                            <p class="product-price">$429.00</p>
+                            <button class="btn add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80" alt="Table Lamp">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Lamps</p>
+                            <h4>Ceramic Table Lamp</h4>
+                            <p class="product-price">$95.00</p>
+                            <button class="btn add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1601366533287-5ee4c763ae4e?auto=format&fit=crop&w=800&q=80" alt="Sideboard">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Cabinets</p>
+                            <h4>Minimalist Sideboard</h4>
+                            <p class="product-price">$899.00</p>
+                            <button class="btn add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&w=800&q=80" alt="Side Table">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Tables</p>
+                            <h4>Walnut Side Table</h4>
+                            <p class="product-price">$149.00</p>
+                            <button class="btn add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DYNAMIC WARDROBES SECTION -->
+            <section class="product-section">
+                <div class="section-header">
+                    <h2>Featured Wardrobes</h2>
+                    <p>Elegant storage solutions, generated dynamically</p>
+                </div>
+                <!-- This empty grid will be populated by JavaScript -->
+                <div class="product-grid" id="dynamic-wardrobes-grid"></div>
+            </section>
+
+            <!-- Testimonials -->
+            <section class="testimonials">
+                <div class="section-header">
+                    <h2>What Our Customers Say</h2>
+                    <p>Real stories from real homes</p>
+                </div>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <p>"The craftsmanship of the Teak Storage Cabinet is absolutely unparalleled. It completely transformed my living room space with its warm wood tones."</p>
+                        <h5>— Sarah Jenkins</h5>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"I ordered the Oak Lounge Chair and it arrived beautifully packaged. It’s exactly the minimalist, premium piece my study needed. Highly recommended."</p>
+                        <h5>— Michael Chen</h5>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ================= ABOUT PAGE ================= -->
+        <div id="page-about" class="page">
+            <div class="page-header">
+                <h1>About Us</h1>
+            </div>
+            <div class="content-container" style="text-align: center;">
+                <h2 style="margin-bottom: 1.5rem; font-size: 2.5rem;">Our Heritage</h2>
+                <p style="margin-bottom: 2rem; color: var(--text-muted); font-size: 1.1rem;">Founded in 1998, Teakwood began as a small family workshop dedicated to preserving the art of traditional woodworking. Today, we bridge the gap between classic craftsmanship and modern minimalist design.</p>
+                <img src="https://images.unsplash.com/photo-1611269154421-4e27233ac5c7?auto=format&fit=crop&w=1000&q=80" alt="Workshop" style="margin-bottom: 2rem;">
+                <p style="color: var(--text-muted); font-size: 1.1rem;">We source all our wood sustainably, ensuring that every piece of furniture not only brings beauty to your home but also protects our planet's forests for generations to come. Quality, sustainability, and timeless design are at the core of everything we do.</p>
+            </div>
+        </div>
+
+        <!-- ================= SHOP PAGE ================= -->
+        <div id="page-shop" class="page">
+            <div class="page-header">
+                <h1>Shop Collection</h1>
+            </div>
+            <div class="shop-container">
+                <!-- Sidebar -->
+                <aside class="shop-sidebar">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#" style="color: var(--teak-medium);">All Products</a></li>
+                        <li><a href="#">Chairs</a></li>
+                        <li><a href="#">Tables</a></li>
+                        <li><a href="#">Cabinets & Storage</a></li>
+                        <li><a href="#">Lighting & Lamps</a></li>
+                        <li><a href="#">Wardrobes</a></li>
+                    </ul>
+
+                    <h3 style="margin-top: 3rem;">Filter by Price</h3>
+                    <ul>
+                        <li><a href="#">Under $100</a></li>
+                        <li><a href="#">$100 - $500</a></li>
+                        <li><a href="#">$500 - $1000</a></li>
+                        <li><a href="#">Over $1000</a></li>
+                    </ul>
+                </aside>
+
+                <!-- Expanded Shop Grid (12 Items) -->
+                <div class="shop-grid">
+                    <!-- Chairs -->
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800&q=80" alt="Lounge Chair">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Chairs</p>
+                            <h4>Oak Lounge Chair</h4>
+                            <p class="product-price">$349.00</p>
+                            <button class="btn add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&w=800&q=80" alt="Dining Chair">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Chairs</p>
+                            <h4>Classic Dining Chair</h4>
+                            <p class="product-price">$129.00</p>
+                            <button class="btn add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=800&q=80" alt="Armchair">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Chairs</p>
+                            <h4>Boucle Armchair</h4>
+                            <p class="product-price">$429.00</p>
+                            <button class="btn add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Tables -->
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&w=800&q=80" alt="Side Table">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Tables</p>
+                            <h4>Walnut Side Table</h4>
+                            <p class="product-price">$189.00</p>
+                            <button class="btn add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1577140917170-285929fb55b7?auto=format&fit=crop&w=800&q=80" alt="Dining Table">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Tables</p>
+                            <h4>Extendable Dining Table</h4>
+                            <p class="product-price">$1,099.00</p>
+                            <button class="btn add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1532372320572-cda25653a26d?auto=format&fit=crop&w=800&q=80" alt="Coffee Table">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Tables</p>
+                            <h4>Round Coffee Table</h4>
+                            <p class="product-price">$249.00</p>
+                            <button class="btn add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Cabinets -->
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?auto=format&fit=crop&w=800&q=80" alt="Cabinet">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Cabinets</p>
+                            <h4>Teak Storage Cabinet</h4>
+                            <p class="product-price">$599.00</p>
+                            <button class="btn add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1601366533287-5ee4c763ae4e?auto=format&fit=crop&w=800&q=80" alt="Sideboard">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Cabinets</p>
+                            <h4>Minimalist Sideboard</h4>
+                            <p class="product-price">$899.00</p>
+                            <button class="btn add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?auto=format&fit=crop&w=800&q=80" alt="Bookshelf">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Cabinets</p>
+                            <h4>Oak Bookshelf</h4>
+                            <p class="product-price">$399.00</p>
+                            <button class="btn add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Lamps -->
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=800&q=80" alt="Floor Lamp">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Lamps</p>
+                            <h4>Brass Floor Lamp</h4>
+                            <p class="product-price">$189.00</p>
+                            <button class="btn add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80" alt="Table Lamp">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Lamps</p>
+                            <h4>Ceramic Table Lamp</h4>
+                            <p class="product-price">$95.00</p>
+                            <button class="btn add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <img src="https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?auto=format&fit=crop&w=800&q=80" alt="Pendant Lamp">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">Lamps</p>
+                            <h4>Woven Pendant Lamp</h4>
+                            <p class="product-price">$145.00</p>
+                            <button class="btn add-to-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= BLOG PAGE ================= -->
+        <div id="page-blog" class="page">
+            <div class="page-header">
+                <h1>Design Journal</h1>
+            </div>
+            <div class="blog-grid">
+                <article class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" alt="Interior Design">
+                    <p style="color: var(--teak-medium); font-weight: bold; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.8rem;">Interior Tips</p>
+                    <h3>How to Style Minimalist Wooden Furniture</h3>
+                    <p>Discover the secrets of making your space feel warm and inviting without overcrowding it. Minimalist design relies on letting key pieces breathe...</p>
+                    <a href="#" class="btn btn-outline" style="margin-top: 1rem;">Read More</a>
+                </article>
+                <article class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1540574163026-643ea20d25b5?auto=format&fit=crop&w=800&q=80" alt="Woodworking">
+                    <p style="color: var(--teak-medium); font-weight: bold; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.8rem;">Craftsmanship</p>
+                    <h3>The Journey of Sustainably Sourced Teak</h3>
+                    <p>We trace the origins of our most popular materials. Learn why sustainably sourced teak is not only better for the environment but produces stronger furniture...</p>
+                    <a href="#" class="btn btn-outline" style="margin-top: 1rem;">Read More</a>
+                </article>
+            </div>
+        </div>
+
+        <!-- ================= CONTACT PAGE ================= -->
+        <div id="page-contact" class="page">
+            <div class="page-header">
+                <h1>Contact Us</h1>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p style="margin-bottom: 2rem;">We’d love to hear from you. Whether you have a question about our furniture, shipping, or just want to say hello, our team is ready to answer.</p>
+                    
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Artisan Way, Woodcraft City, NY 10001</p>
+                    <p><i class="fas fa-envelope"></i> hello@teakwoodshop.com</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+
+                    <h3 style="margin-top: 3rem; font-size: 1.5rem;">Follow Us</h3>
+                    <div style="display: flex; gap: 1rem; font-size: 1.5rem; color: var(--teak-medium); margin-top: 1rem;">
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-pinterest"></i>
+                        <i class="fab fa-facebook"></i>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="text" placeholder="Subject" required>
+                    <textarea rows="6" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h2 class="logo">Teakwood.</h2>
+                <p style="color: #aaa; margin-top: 1rem;">Premium, sustainably sourced minimalist furniture for the modern home.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="#" class="nav-link-footer" data-target="shop">Living Room</a></li>
+                    <li><a href="#" class="nav-link-footer" data-target="shop">Bedroom</a></li>
+                    <li><a href="#" class="nav-link-footer" data-target="shop">Wardrobes</a></li>
+                    <li><a href="#" class="nav-link-footer" data-target="shop">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Information</h3>
+                <ul>
+                    <li><a href="#" class="nav-link-footer" data-target="about">About Us</a></li>
+                    <li><a href="#" class="nav-link-footer" data-target="blog">Journal</a></li>
+                    <li><a href="#" class="nav-link-footer" data-target="contact">Contact</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Newsletter</h3>
+                <p style="color: #aaa; margin-bottom: 1rem;">Subscribe to receive updates, access to exclusive deals, and more.</p>
+                <div style="display: flex;">
+                    <input type="email" placeholder="Enter your email" style="padding: 0.8rem; border: none; width: 100%; outline: none;">
+                    <button style="background: var(--teak-medium); color: white; border: none; padding: 0 1rem; cursor: pointer;">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Teakwood Furniture. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Javascript for SPA Routing, Dynamic Generation, and Cart Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // === 1. NAVIGATION LOGIC (SPA) ===
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            
+            function navigateTo(targetId) {
+                // Remove active classes
+                navLinks.forEach(nav => nav.classList.remove('active'));
+                pages.forEach(page => page.classList.remove('active'));
+                
+                // Add active class to corresponding nav links
+                navLinks.forEach(nav => {
+                    if(nav.getAttribute('href') === `#${targetId}`) {
+                        nav.classList.add('active');
+                    }
+                });
+                
+                // Show target page
+                const targetPage = document.getElementById(`page-${targetId}`);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+
+            // Bind Navigation Links
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    navigateTo(targetId);
+                });
+            });
+
+            // Bind Footer & CTA Links
+            document.querySelectorAll('.cta-shop, .nav-link-footer').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    let target = link.getAttribute('data-target') || 'shop';
+                    navigateTo(target);
+                });
+            });
+
+            // Make the Logo return home
+            document.querySelector('.nav-link-logo').addEventListener('click', (e) => {
+                e.preventDefault();
+                navigateTo('home');
+            });
+
+
+            // === 2. DYNAMIC WARDROBE GENERATION ===
+            // Array of wardrobe data - Fixed broken images with verified Unsplash IDs
+            const wardrobesData =[
+                {
+                    name: "Teak Sliding Wardrobe",
+                    category: "Wardrobes",
+                    price: "$1,299.00",
+                    image: "https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    name: "Oak Minimalist Closet",
+                    category: "Wardrobes",
+                    price: "$949.00",
+                    image: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    name: "Walnut Double Wardrobe",
+                    category: "Wardrobes",
+                    price: "$1,499.00",
+                    image: "https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=800&q=80"
+                },
+                {
+                    name: "Vintage Panel Armoire",
+                    category: "Wardrobes",
+                    price: "$1,199.00",
+                    image: "https://images.unsplash.com/photo-1532324338981-d4cb800cbce4?auto=format&fit=crop&w=800&q=80"
+                }
+            ];
+
+            const wardrobeGrid = document.getElementById('dynamic-wardrobes-grid');
+            
+            // Loop through the data and generate HTML structure
+            wardrobesData.forEach(wardrobe => {
+                const card = document.createElement('div');
+                card.classList.add('product-card');
+                
+                card.innerHTML = `
+                    <div class="product-img-wrap">
+                        <img src="${wardrobe.image}" alt="${wardrobe.name}">
+                    </div>
+                    <div class="product-info">
+                        <p class="product-category">${wardrobe.category}</p>
+                        <h4>${wardrobe.name}</h4>
+                        <p class="product-price">${wardrobe.price}</p>
+                        <button class="btn add-to-cart">Add to Cart</button>
+                    </div>
+                `;
+                wardrobeGrid.appendChild(card);
+            });
+
+
+            // === 3. ADD TO CART LOGIC (Using Event Delegation) ===
+            // We use event delegation here because some buttons (wardrobes) are created dynamically *after* the DOM loads.
+            let cartCount = 0;
+            const cartBadge = document.getElementById('cart-count');
+
+            document.body.addEventListener('click', (e) => {
+                if (e.target.classList.contains('add-to-cart')) {
+                    const button = e.target;
+                    
+                    // Update Cart Count
+                    cartCount++;
+                    cartBadge.innerText = cartCount;
+                    
+                    // Button UI Feedback
+                    const originalText = button.innerText;
+                    button.innerText = 'Added!';
+                    button.style.backgroundColor = 'var(--teak-dark)';
+                    
+                    // Reset button after 1.5 seconds
+                    setTimeout(() => {
+                        button.innerText = originalText;
+                        button.style.backgroundColor = ''; // Reverts to CSS default
+                    }, 1500);
+                }
+            });
+
+
+            // === 4. CONTACT FORM LOGIC ===
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    // Mock submission
+                    alert('Thank you for reaching out! Your message has been sent successfully. Our team will get back to you within 24 hours.');
+                    contactForm.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

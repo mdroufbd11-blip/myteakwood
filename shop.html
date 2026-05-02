@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Teakwood</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Teakwood.</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="shop.html" class="nav-link active">Shop</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-bag"></i><span class="cart-badge" id="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>Shop Collection</h1>
+    </div>
+    <div class="shop-container">
+        <aside class="shop-sidebar">
+            <h3>Categories</h3>
+            <ul>
+                <li><a href="#">Chairs</a></li>
+                <li><a href="#">Tables</a></li>
+                <li><a href="#">Cabinets & Storage</a></li>
+            </ul>
+        </aside>
+
+        <div class="shop-grid">
+            <!-- Clicking image or text routes to Product Detail Page -->
+            <div class="product-card">
+                <a href="product.html">
+                    <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800&q=80"></div>
+                    <div class="product-info"><h4>Oak Lounge Chair</h4><p class="product-price">$349.00</p></div>
+                </a>
+                <button class="btn add-to-cart">Add to Cart</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="product.html">
+                    <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&w=800&q=80"></div>
+                    <div class="product-info"><h4>Walnut Side Table</h4><p class="product-price">$189.00</p></div>
+                </a>
+                <button class="btn add-to-cart">Add to Cart</button>
+            </div>
+            
+            <div class="product-card">
+                <a href="product.html">
+                    <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&w=800&q=80"></div>
+                    <div class="product-info"><h4>Teak Sliding Wardrobe</h4><p class="product-price">$1,299.00</p></div>
+                </a>
+                <button class="btn add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
